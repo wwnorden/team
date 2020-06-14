@@ -1,6 +1,6 @@
 {
     "name": "wwnorden/team",
-    "description": "Simple team module",
+    "description": "Simple SilverStripe 4+ team module",
     "keywords": [
         "silverstripe",
         "team",
@@ -13,7 +13,7 @@
         "silverstripe/cms": "^4.0",
         "silverstripe/assets": "^1.0",
         "silverstripe/asset-admin": "^1.0",
-        "wwnorden/vehicles": "~1.0.0",
+        "wwnorden/vehicles": "~1.1.0",
         "php": ">=7.2"
     },
     "homepage": "https://github.com/wwnorden/team",
@@ -23,6 +23,11 @@
             "name": "Claas Witthöft"
         }
     ],
+    "extra": {
+        "expose": [
+            "client/dist"
+        ]
+    },
     "autoload": {
         "psr-4": {
             "WWN\\Team\\": "src/"
