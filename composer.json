@@ -1,0 +1,33 @@
+{
+    "name": "wwnorden/team",
+    "description": "Simple team module",
+    "keywords": [
+        "silverstripe",
+        "team",
+        "group",
+        "member",
+        "mannschaft"
+    ],
+    "type": "silverstripe-vendormodule",
+    "require": {
+        "silverstripe/cms": "^4.0",
+        "silverstripe/assets": "^1.0",
+        "silverstripe/asset-admin": "^1.0",
+        "wwnorden/vehicles": "~1.0.0",
+        "php": ">=7.2"
+    },
+    "homepage": "https://github.com/wwnorden/team",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Claas Witthöft"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "WWN\\Team\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

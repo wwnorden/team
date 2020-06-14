@@ -1,0 +1,7 @@
+SilverStripe\SiteConfig\SiteConfig:
+  extensions:
+    - WWN\Team\Extensions\TeamSiteConfigExtension
+
+WWN\Vehicles\Vehicle:
+  extensions:
+    - WWN\Team\Extensions\VehicleExtension

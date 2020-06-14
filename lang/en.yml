@@ -1,0 +1,38 @@
+de:
+  WWN\Team\TeamAdmin:
+    MENUTITLE: 'Team'
+    SITECONFIGMENUTITLE: 'Uploads'
+
+  WWN\Team\TeamMember:
+    db_Email: 'Email'
+    db_FirstName: 'First name'
+    db_Grade: 'Grade'
+    db_LastName: 'Last name'
+    db_Position: 'Position'
+    has_one_Image: 'Image'
+    many_many_Groups: 'Groups'
+    PLURALNAME: 'Team'
+    SINGULARNAME: 'Member'
+
+  WWN\Team\TeamGroup:
+    db_Name: 'Name'
+    db_Platoon: 'Platoon'
+    db_Title: 'Title'
+    db_URLSegment: 'URL segment'
+    belongs_many_many_TeamMembers: 'Members'
+    has_one_Image: 'Image'
+    has_many_Vehicles: 'Vehicles'
+    PLURALNAME: 'Groups'
+    SINGULARNAME: 'Group'
+
+  WWN\Team\TeamPage:
+    SINGULARNAME: 'Team page'
+
+  WWN\Team\Extensions\TeamSiteConfigExtension:
+    SITECONFIGMENUTITLE: 'Uploads'
+    Foldername: 'Team'
+    UploadFolders: 'Folder for team images'
+    has_one_NewsImageUploadFolder: 'Images'
+
+  WWN\Team\Extensions\VehicleExtension:
+    has_one_TeamGroup: 'Group'
