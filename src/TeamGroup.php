@@ -31,6 +31,7 @@ class TeamGroup extends DataObject
         'Name' => 'Varchar(255)',
         'URLSegment' => 'Varchar(255)',
         'Platoon' => 'Varchar(255)',
+        'Content' => 'HTMLText',
     ];
 
     /**
@@ -52,6 +53,13 @@ class TeamGroup extends DataObject
      */
     private static $belongs_many_many = [
         'TeamMembers' => TeamMember::class,
+    ];
+
+    /**
+     * @var array
+     */
+    private static $owns = [
+        'Image',
     ];
 
     /**
@@ -138,5 +146,16 @@ class TeamGroup extends DataObject
             }
             $this->URLSegment = $filteredTitle;
         }
+    }
+
+    /**
+     * publish images after save to db
+     */
+    public function onAfterWrite()
+    {
+        if ($this->owner->ImageID) {
+            $this->owner->Image()->publishSingle();
+        }
+        parent::onAfterWrite();
     }
 }
