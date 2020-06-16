@@ -15,6 +15,7 @@ de:
     SINGULARNAME: 'Mitglied'
 
   WWN\Team\TeamGroup:
+    db_Content: 'Inhalt'
     db_Name: 'Name'
     db_Platoon: 'Zug'
     db_Title: 'Titel'
