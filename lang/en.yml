@@ -33,7 +33,7 @@ de:
     SITECONFIGMENUTITLE: 'Uploads'
     Foldername: 'Team'
     UploadFolders: 'Folder for team images'
-    has_one_NewsImageUploadFolder: 'Images'
+    has_one_TeamImageUploadFolder: 'Images'
 
   WWN\Team\Extensions\VehicleExtension:
     has_one_TeamGroup: 'Group'

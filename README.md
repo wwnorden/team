@@ -1,4 +1,4 @@
-# SilverStripe News Module
+# SilverStripe Team Module
 
 ## Requirements
 
