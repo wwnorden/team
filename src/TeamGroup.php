@@ -142,7 +142,7 @@ class TeamGroup extends DataObject
             if (! $filteredTitle || $filteredTitle == '-'
                 || $filteredTitle == '-1'
             ) {
-                $filteredTitle = "news-$this->ID";
+                $filteredTitle = "group-$this->ID";
             }
             $this->URLSegment = $filteredTitle;
         }

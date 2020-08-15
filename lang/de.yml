@@ -33,7 +33,7 @@ de:
     SITECONFIGMENUTITLE: 'Uploads'
     Foldername: 'Mannschaft'
     UploadFolders: 'Ordner für Mannschaftsbilder'
-    has_one_NewsImageUploadFolder: 'Bilder'
+    has_one_TeamImageUploadFolder: 'Bilder'
 
   WWN\Team\Extensions\VehicleExtension:
     has_one_TeamGroup: 'Gruppe'
