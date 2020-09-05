@@ -35,5 +35,5 @@ de:
     UploadFolders: 'Folder for team images'
     has_one_TeamImageUploadFolder: 'Images'
 
-  WWN\Team\Extensions\VehicleExtension:
+  WWN\Vehicles\Vehicle:
     has_one_TeamGroup: 'Group'

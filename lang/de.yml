@@ -37,3 +37,6 @@ de:
 
   WWN\Team\Extensions\VehicleExtension:
     has_one_TeamGroup: 'Gruppe'
+
+  WWN\Vehicles\Vehicle:
+    has_one_TeamGroup: 'Gruppe'
