@@ -82,7 +82,7 @@ class TeamGroup extends DataObject
      * @var array
      */
     private static $searchable_fields = [
-        'Title',
+        'Name',
     ];
 
     /**
@@ -127,24 +127,24 @@ class TeamGroup extends DataObject
                 && $this->isChanged('URLSegment'))
         ) {
             $urlFilter = URLSegmentFilter::create();
-            $filteredTitle = $urlFilter->filter($this->Title);
+            $filteredName = $urlFilter->filter($this->Name);
 
             // check if duplicate
-            $filter['URLSegment'] = Convert::raw2sql($filteredTitle);
+            $filter['URLSegment'] = Convert::raw2sql($filteredName);
             $filter['ID:not'] = $this->ID;
             $object = DataObject::get($this->getClassName())->filter($filter)
                 ->first();
             if ($object) {
-                $filteredTitle .= '-'.$this->ID;
+                $filteredName .= '-'.$this->ID;
             }
 
-            // Fallback to generic page name if path is empty (= no valid, convertable characters)
-            if (! $filteredTitle || $filteredTitle == '-'
-                || $filteredTitle == '-1'
+            // Fallback to generic name
+            if (! $filteredName || $filteredName == '-'
+                || $filteredName == '-1'
             ) {
-                $filteredTitle = "group-$this->ID";
+                $filteredName = "group-$this->ID";
             }
-            $this->URLSegment = $filteredTitle;
+            $this->URLSegment = $filteredName;
         }
     }
 
