@@ -27,6 +27,8 @@ class TeamMember extends DataObject
         'LastName' => 'Varchar(255)',
         'Email' => 'Varchar(255)',
         'Position' => 'Varchar(255)',
+        'ShowMailOnSite' => 'Boolean',
+        'ShowInContactForm' => 'Boolean',
     ];
 
     /**
@@ -68,6 +70,8 @@ class TeamMember extends DataObject
         'LastName',
         'Email',
         'Position',
+        'ShowMailOnSiteFormatted',
+        'ShowInContactFormFormatted',
     ];
 
     /**
@@ -95,6 +99,49 @@ class TeamMember extends DataObject
                 'Position',
             ]
         );
+    }
+
+    /**
+     * @param bool $includerelations
+     *
+     * @return array
+     */
+    public function fieldLabels($includerelations = true): array
+    {
+        $labels = parent::fieldLabels(true);
+        $labels['ShowMailOnSiteFormatted'] =
+            _t('WWN\Team\TeamMember.db_ShowMailOnSite', 'Show mail on site');
+        $labels['ShowInContactFormFormatted'] =
+            _t('WWN\Team\TeamMember.db_ShowInContactForm',
+                'Show in contact form');
+
+        return $labels;
+    }
+
+    /**
+     * @return false|string
+     */
+    public function getShowMailOnSiteFormatted(): ?string
+    {
+        return $this->dbObject('ShowMailOnSite')
+            ->getValue()
+            ?
+            _t('WWN\Team\TeamMember.Yes', 'Yes')
+            :
+            _t('WWN\Team\TeamMember.No', 'No');
+    }
+
+    /**
+     * @return false|string
+     */
+    public function ShowInContactFormFormatted(): ?string
+    {
+        return $this->dbObject('ShowInContactForm')
+            ->getValue()
+            ?
+            _t('WWN\Team\TeamMember.Yes', 'Yes')
+            :
+            _t('WWN\Team\TeamMember.No', 'No');
     }
 
     /**
