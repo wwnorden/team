@@ -35,7 +35,9 @@
                         $Grade
                         $FirstName
                         $LastName
-                        $Email
+                        <% if $ShowMailOnSite %>
+                            <a href="mailto:$Email"><% _t('WWN\Team\TeamMember.db_Email', 'E-mail') %></a>
+                        <% end_if %>
                         $Position
                     <% end_loop %>
                 </ul>

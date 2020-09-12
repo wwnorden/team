@@ -9,10 +9,14 @@ de:
     db_Grade: 'Dienstgrad'
     db_LastName: 'Nachname'
     db_Position: 'Position'
+    db_ShowMailOnSite: 'E-Mail auf Website anzeigen'
+    db_ShowInContactForm: 'Im Kontaktformular anzeigen'
     has_one_Image: 'Bild'
     many_many_Groups: 'Gruppen'
     PLURALNAME: 'Mannschaft'
     SINGULARNAME: 'Mitglied'
+    Yes: 'Ja'
+    No: 'Nein'
 
   WWN\Team\TeamGroup:
     db_Content: 'Inhalt'

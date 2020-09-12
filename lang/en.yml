@@ -9,6 +9,8 @@ de:
     db_Grade: 'Grade'
     db_LastName: 'Last name'
     db_Position: 'Position'
+    db_ShowMailOnSite: 'Show email on website'
+    db_ShowInContactForm: 'Show in contact form'
     has_one_Image: 'Image'
     many_many_Groups: 'Groups'
     PLURALNAME: 'Team'
@@ -25,6 +27,8 @@ de:
     has_many_Vehicles: 'Vehicles'
     PLURALNAME: 'Groups'
     SINGULARNAME: 'Group'
+    Yes: 'Yes'
+    No: 'No'
 
   WWN\Team\TeamPage:
     SINGULARNAME: 'Team page'
