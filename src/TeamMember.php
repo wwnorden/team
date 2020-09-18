@@ -3,6 +3,8 @@
 namespace WWN\Team;
 
 use SilverStripe\Assets\Image;
+use SilverStripe\CMS\Forms\SiteTreeURLSegmentField;
+use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\DataObject;
 
@@ -29,6 +31,7 @@ class TeamMember extends DataObject
         'Position' => 'Varchar(255)',
         'ShowMailOnSite' => 'Boolean',
         'ShowInContactForm' => 'Boolean',
+        'SortOrder' => 'Int',
     ];
 
     /**
@@ -142,6 +145,17 @@ class TeamMember extends DataObject
             _t('WWN\Team\TeamMember.Yes', 'Yes')
             :
             _t('WWN\Team\TeamMember.No', 'No');
+    }
+
+    /**
+     * @return FieldList $fields
+     */
+    public function getCMSFields(): FieldList
+    {
+        $fields = parent::getCMSFields();
+        $fields->removeByName('SortOrder');
+
+        return $fields;
     }
 
     /**

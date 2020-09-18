@@ -4,6 +4,7 @@ namespace WWN\Team;
 
 use SilverStripe\Assets\Image;
 use SilverStripe\CMS\Forms\SiteTreeURLSegmentField;
+use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\RequiredFields;
@@ -30,8 +31,8 @@ class TeamGroup extends DataObject
     private static $db = [
         'Name' => 'Varchar(255)',
         'URLSegment' => 'Varchar(255)',
-        'Platoon' => 'Varchar(255)',
         'Content' => 'HTMLText',
+        'SortOrder' => 'Int',
     ];
 
     /**
@@ -39,6 +40,7 @@ class TeamGroup extends DataObject
      */
     private static $has_one = [
         'Image' => Image::class,
+        'Platoon' => TeamPlatoon::class,
     ];
 
     /**
@@ -75,7 +77,6 @@ class TeamGroup extends DataObject
     private static $summary_fields = [
         'Name',
         'URLSegment',
-        'Platoon',
     ];
 
     /**
@@ -111,6 +112,7 @@ class TeamGroup extends DataObject
             ),
         );
         $fields->addFieldsToTab('Root.Main', $mainFields);
+        $fields->removeByName('SortOrder');
 
         return $fields;
     }
@@ -157,5 +159,18 @@ class TeamGroup extends DataObject
             $this->owner->Image()->publishSingle();
         }
         parent::onAfterWrite();
+    }
+
+    /**
+     * @return string
+     */
+    public function LinkingMode(): string
+    {
+        $group = TeamGroup::get()
+            ->filter(['URLSegment' => $this->URLSegment])
+            ->first();
+
+        return ($group->ID == TeamPageController::curr()->groupId) ? 'current'
+            : 'link';
     }
 }
