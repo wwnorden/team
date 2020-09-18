@@ -30,6 +30,16 @@ de:
     Yes: 'Yes'
     No: 'No'
 
+  WWN\Team\TeamPlatoon:
+    db_Content: 'Content'
+    db_Name: 'Name'
+    db_URLSegment: 'URL segment'
+    has_one_Image: 'Image'
+    has_many_Vehicles: 'Vehicles'
+    has_many_Groups: 'Groups'
+    PLURALNAME: 'Platoons'
+    SINGULARNAME: 'Platoon'
+
   WWN\Team\TeamPage:
     SINGULARNAME: 'Team page'
 
@@ -41,3 +51,4 @@ de:
 
   WWN\Vehicles\Vehicle:
     has_one_TeamGroup: 'Group'
+    has_one_TeamPlatoon: 'Platoon'
