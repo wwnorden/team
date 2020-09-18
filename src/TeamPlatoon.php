@@ -4,26 +4,26 @@ namespace WWN\Team;
 
 use SilverStripe\Assets\Image;
 use SilverStripe\CMS\Forms\SiteTreeURLSegmentField;
-use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\RequiredFields;
+use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\View\Parsers\URLSegmentFilter;
 use SilverStripe\View\Requirements;
 use WWN\Vehicles\Vehicle;
 
 /**
- * TeamGroup
+ * TeamPlatoon
  *
  * @package wwn-team
  */
-class TeamGroup extends DataObject
+class TeamPlatoon extends DataObject
 {
     /**
      * @var string
      */
-    private static $table_name = 'WWNTeamGroup';
+    private static $table_name = 'WWNTeamPlatoon';
 
     /**
      * @var array
@@ -40,7 +40,6 @@ class TeamGroup extends DataObject
      */
     private static $has_one = [
         'Image' => Image::class,
-        'Platoon' => TeamPlatoon::class,
     ];
 
     /**
@@ -48,13 +47,7 @@ class TeamGroup extends DataObject
      */
     private static $has_many = [
         'Vehicles' => Vehicle::class,
-    ];
-
-    /**
-     * @var array
-     */
-    private static $belongs_many_many = [
-        'TeamMembers' => TeamMember::class,
+        'Groups' => TeamGroup::class,
     ];
 
     /**
@@ -108,7 +101,7 @@ class TeamGroup extends DataObject
         $mainFields = array(
             'URLSegment' => SiteTreeURLSegmentField::create(
                 'URLSegment',
-                _t('WWN\Team\TeamGroup.db_URLSegment', 'URL-segment')
+                _t('WWN\Team\TeamPlatoon.db_URLSegment', 'URL-segment')
             ),
         );
         $fields->addFieldsToTab('Root.Main', $mainFields);
@@ -162,15 +155,14 @@ class TeamGroup extends DataObject
     }
 
     /**
-     * @return string
+     * @param $platoonId
+     *
+     * @return DataList
      */
-    public function LinkingMode(): string
+    public function SortedGroups($platoonId): DataList
     {
-        $group = TeamGroup::get()
-            ->filter(['URLSegment' => $this->URLSegment])
-            ->first();
-
-        return ($group->ID == TeamPageController::curr()->groupId) ? 'current'
-            : 'link';
+        return TeamGroup::get()
+            ->filter(['PlatoonID' => $this->ID])
+            ->sort('SortOrder ASC');
     }
 }

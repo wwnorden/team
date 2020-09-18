@@ -30,6 +30,16 @@ de:
     PLURALNAME: 'Gruppen'
     SINGULARNAME: 'Gruppe'
 
+  WWN\Team\TeamPlatoon:
+    db_Content: 'Inhalt'
+    db_Name: 'Name'
+    db_URLSegment: 'URL-Segment'
+    has_one_Image: 'Bild'
+    has_many_Vehicles: 'Fahrzeuge'
+    has_many_Groups: 'Gruppen'
+    PLURALNAME: 'Züge'
+    SINGULARNAME: 'Zug'
+
   WWN\Team\TeamPage:
     SINGULARNAME: 'Mannschaftsseite'
 
@@ -41,6 +51,8 @@ de:
 
   WWN\Team\Extensions\VehicleExtension:
     has_one_TeamGroup: 'Gruppe'
+    has_one_TeamPlatoon: 'Zug'
 
   WWN\Vehicles\Vehicle:
     has_one_TeamGroup: 'Gruppe'
+    has_one_TeamPlatoon: 'Zug'

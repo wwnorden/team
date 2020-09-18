@@ -3,6 +3,9 @@
 namespace WWN\Team;
 
 use SilverStripe\Admin\ModelAdmin;
+use SilverStripe\Forms\Form;
+use SilverStripe\Forms\GridField\GridField;
+use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 
 /**
  * TeamAdmin
@@ -32,5 +35,31 @@ class TeamAdmin extends ModelAdmin
     private static $managed_models = [
         'WWN\Team\TeamMember',
         'WWN\Team\TeamGroup',
+        'WWN\Team\TeamPlatoon',
     ];
+
+    /**
+     * @param null $id
+     * @param null $fields
+     *
+     * @return Form
+     */
+    public function getEditForm($id = null, $fields = null): Form
+    {
+        $form = parent::getEditForm($id, $fields);
+        $model = singleton($this->modelClass);
+
+        if (class_exists(GridFieldOrderableRows::class)
+            && $model->hasField('SortOrder')
+        ) {
+            $gridField = $form->Fields()
+                ->dataFieldByName($this->sanitiseClassName($this->modelClass));
+            if ($gridField instanceof GridField) {
+                $gridField->getConfig()
+                    ->addComponent(new GridFieldOrderableRows('SortOrder'));
+            }
+        }
+
+        return $form;
+    }
 }
