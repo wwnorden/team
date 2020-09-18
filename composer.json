@@ -4,9 +4,11 @@
     "keywords": [
         "silverstripe",
         "team",
+        "platoon",
         "group",
         "member",
-        "mannschaft"
+        "mannschaft",
+        "zug"
     ],
     "type": "silverstripe-vendormodule",
     "require": {
@@ -14,7 +16,8 @@
         "silverstripe/assets": "^1.0",
         "silverstripe/asset-admin": "^1.0",
         "wwnorden/vehicles": "~1.1.0",
-        "php": ">=7.2"
+        "php": ">=7.2",
+        "symbiote/silverstripe-gridfieldextensions": "~3.1"
     },
     "homepage": "https://github.com/wwnorden/team",
     "license": "BSD-3-Clause",
