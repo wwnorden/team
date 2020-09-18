@@ -5,7 +5,8 @@
 * SilverStripe CMS 4.0+
 * SilverStripe Assets 1.0+
 * SilverStripe Asset Admin Module 1.0+
-* wwnorden/vehicles
+* wwnorden/vehicles 1.1+
+* symbiote/silverstripe-gridfieldextensions ^3
 
 ## Installation
 
@@ -17,5 +18,5 @@ composer require wwnorden/team
 
 Create team members and add groups to them.
 Create a new page type team page and publish it. 
-Groups with their members and vehicles will then be mapped to this new page.
+Platoons with Groups and their members and vehicles can then be mapped to this new page.
  
