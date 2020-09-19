@@ -159,6 +159,17 @@ class TeamMember extends DataObject
     }
 
     /**
+     * Increment SortOrder on save
+     */
+    public function onBeforeWrite()
+    {
+        if (! $this->SortOrder) {
+            $this->SortOrder = TeamMember::get()->max('SortOrder') + 1;
+        }
+        parent::onBeforeWrite();
+    }
+
+    /**
      * publish images after save to db
      */
     public function onAfterWrite()
