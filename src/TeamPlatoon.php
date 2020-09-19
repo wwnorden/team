@@ -60,9 +60,7 @@ class TeamPlatoon extends DataObject
     /**
      * @var string
      */
-    private static $default_sort = [
-        'Name' => 'ASC',
-    ];
+    private static $default_sort = 'SortOrder';
 
     /**
      * @var array
@@ -115,6 +113,10 @@ class TeamPlatoon extends DataObject
      */
     protected function onBeforeWrite()
     {
+        if (! $this->SortOrder) {
+            $this->SortOrder = TeamPlatoon::get()->max('SortOrder') + 1;
+        }
+
         parent::onBeforeWrite();
 
         if (! $this->URLSegment

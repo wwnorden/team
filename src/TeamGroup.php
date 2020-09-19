@@ -67,9 +67,7 @@ class TeamGroup extends DataObject
     /**
      * @var string
      */
-    private static $default_sort = [
-        'Name' => 'ASC',
-    ];
+    private static $default_sort = 'SortOrder';
 
     /**
      * @var array
@@ -122,6 +120,10 @@ class TeamGroup extends DataObject
      */
     protected function onBeforeWrite()
     {
+        if (! $this->SortOrder) {
+            $this->SortOrder = TeamGroup::get()->max('SortOrder') + 1;
+        }
+
         parent::onBeforeWrite();
 
         if (! $this->URLSegment
