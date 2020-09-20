@@ -89,22 +89,6 @@ class TeamMember extends DataObject
     ];
 
     /**
-     * @return object
-     */
-    public function getCMSValidator()
-    {
-        return new RequiredFields(
-            [
-                'Grade',
-                'FirstName',
-                'LastName',
-                'Email',
-                'Position',
-            ]
-        );
-    }
-
-    /**
      * @param bool $includerelations
      *
      * @return array
@@ -145,6 +129,16 @@ class TeamMember extends DataObject
             _t('WWN\Team\TeamMember.Yes', 'Yes')
             :
             _t('WWN\Team\TeamMember.No', 'No');
+    }
+
+    /**
+     * Overwrite Getter for gridfield_relation search
+     * 
+     * @return DataObject|\SilverStripe\ORM\FieldType\DBField|string|null
+     */
+    public function getTitle()
+    {
+        return $this->FirstName. ' ' .$this->LastName;
     }
 
     /**
