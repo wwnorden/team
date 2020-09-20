@@ -77,8 +77,8 @@ class TeamPageController extends PageController
                         'Link' => $this->Link($name),
                     ]
                 ),
-                'Vehicles' => $group->Vehicles(),
-                'Members' => $group->TeamMembers(),
+                'Vehicles' => $group->Vehicles()->sort('SortOrder ASC'),
+                'Members' => $group->TeamMembers()->sort('SortOrder ASC'),
             ];
 
             $renderWith = [
