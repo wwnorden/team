@@ -105,6 +105,14 @@ class TeamPlatoon extends DataObject
         $fields->addFieldsToTab('Root.Main', $mainFields);
         $fields->removeByName('SortOrder');
 
+        $image = $fields->dataFieldByName('Image');
+        $image->setFolderName(
+            _t(
+                'WWN\Team\Extensions\TeamSiteConfigExtension.Foldername',
+                'Foldername'
+            ).'/'. str_replace('/','-',$this->Name)
+        );
+        
         return $fields;
     }
 
