@@ -7,6 +7,7 @@ use SilverStripe\CMS\Forms\SiteTreeURLSegmentField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\FieldType\DBField;
 
 /**
  * TeamMember
@@ -21,7 +22,7 @@ class TeamMember extends DataObject
     private static $table_name = 'WWNTeamMember';
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $db = [
         'Grade' => 'Varchar(255)',
@@ -35,21 +36,21 @@ class TeamMember extends DataObject
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $has_one = [
         'Image' => Image::class,
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $many_many = [
         'Groups' => TeamGroup::class,
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $owns = [
         'Image',
@@ -58,14 +59,14 @@ class TeamMember extends DataObject
     /**
      * Standardsortierung
      *
-     * @var string
+     * @var string[]
      */
     private static $default_sort = [
         'LastName' => 'ASC',
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $summary_fields = [
         'Grade',
@@ -78,7 +79,7 @@ class TeamMember extends DataObject
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $searchable_fields = [
         'Grade',
@@ -134,9 +135,9 @@ class TeamMember extends DataObject
     /**
      * Overwrite Getter for gridfield_relation search
      * 
-     * @return DataObject|\SilverStripe\ORM\FieldType\DBField|string|null
+     * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->FirstName. ' ' .$this->LastName;
     }
