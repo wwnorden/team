@@ -26,7 +26,7 @@ class TeamPlatoon extends DataObject
     private static $table_name = 'WWNTeamPlatoon';
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $db = [
         'Name' => 'Varchar(255)',
@@ -36,14 +36,14 @@ class TeamPlatoon extends DataObject
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $has_one = [
         'Image' => Image::class,
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $has_many = [
         'Vehicles' => Vehicle::class,
@@ -51,7 +51,7 @@ class TeamPlatoon extends DataObject
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $owns = [
         'Image',
@@ -63,7 +63,7 @@ class TeamPlatoon extends DataObject
     private static $default_sort = 'SortOrder';
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $summary_fields = [
         'Name',
@@ -71,7 +71,7 @@ class TeamPlatoon extends DataObject
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $searchable_fields = [
         'Name',
@@ -80,7 +80,7 @@ class TeamPlatoon extends DataObject
     /**
      * @return RequiredFields
      */
-    public function getCMSValidator()
+    public function getCMSValidator(): RequiredFields
     {
         return new RequiredFields('Name');
     }
@@ -96,20 +96,28 @@ class TeamPlatoon extends DataObject
         Requirements::javascript('wwnorden/team:client/dist/js/urlsegmentfield.js');
 
         // Url segment
-        $mainFields = array(
+        $mainFields = [
             'URLSegment' => SiteTreeURLSegmentField::create(
                 'URLSegment',
                 _t('WWN\Team\TeamPlatoon.db_URLSegment', 'URL-segment')
             ),
-        );
+        ];
         $fields->addFieldsToTab('Root.Main', $mainFields);
         $fields->removeByName('SortOrder');
 
+        $image = $fields->dataFieldByName('Image');
+        $image->setFolderName(
+            _t(
+                'WWN\Team\Extensions\TeamSiteConfigExtension.Foldername',
+                'Foldername'
+            ).'/'. str_replace('/','-',$this->Name)
+        );
+        
         return $fields;
     }
 
     /**
-     * rewrite urlsegment
+     * rewrite URLSegment and SortOrder
      */
     protected function onBeforeWrite()
     {
