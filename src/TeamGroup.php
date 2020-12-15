@@ -26,7 +26,7 @@ class TeamGroup extends DataObject
     private static $table_name = 'WWNTeamGroup';
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $db = [
         'Name' => 'Varchar(255)',
@@ -36,7 +36,7 @@ class TeamGroup extends DataObject
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $has_one = [
         'Image' => Image::class,
@@ -44,21 +44,21 @@ class TeamGroup extends DataObject
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $has_many = [
         'Vehicles' => Vehicle::class,
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $belongs_many_many = [
         'TeamMembers' => TeamMember::class,
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $owns = [
         'Image',
@@ -70,7 +70,7 @@ class TeamGroup extends DataObject
     private static $default_sort = 'SortOrder';
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $summary_fields = [
         'Name',
@@ -78,7 +78,7 @@ class TeamGroup extends DataObject
     ];
 
     /**
-     * @var array
+     * @var string[]
      */
     private static $searchable_fields = [
         'Name',
@@ -87,7 +87,7 @@ class TeamGroup extends DataObject
     /**
      * @return RequiredFields
      */
-    public function getCMSValidator()
+    public function getCMSValidator(): RequiredFields
     {
         return new RequiredFields('Name');
     }
@@ -124,7 +124,7 @@ class TeamGroup extends DataObject
     }
 
     /**
-     * rewrite urlsegment
+     * rewrite URLSegment and SortOrder
      */
     protected function onBeforeWrite()
     {
