@@ -149,6 +149,14 @@ class TeamMember extends DataObject
         $fields = parent::getCMSFields();
         $fields->removeByName('SortOrder');
 
+        $image = $fields->dataFieldByName('Image');
+        $image->setFolderName(
+            _t(
+                'WWN\Team\Extensions\TeamSiteConfigExtension.Foldername',
+                'Foldername'
+            ).'/'. str_replace('/','-',$this->FirstName . ' ' . $this->LastName)
+        );
+        
         return $fields;
     }
 
