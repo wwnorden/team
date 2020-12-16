@@ -155,7 +155,7 @@ class TeamMember extends DataObject
             _t(
                 'WWN\Team\Extensions\TeamSiteConfigExtension.Foldername',
                 'Foldername'
-            ).'/'. str_replace('/','-',$this->FirstName . ' ' . $this->LastName)
+            ).'/'. str_replace(['/',',','.',' ','_','(',')'],'-',$this->FirstName . ' ' . $this->LastName)
         );
         
         return $fields;
