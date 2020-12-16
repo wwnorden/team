@@ -117,7 +117,7 @@ class TeamGroup extends DataObject
             _t(
                 'WWN\Team\Extensions\TeamSiteConfigExtension.Foldername',
                 'Foldername'
-            ).'/'. str_replace('/','-',$this->Name)
+            ).'/'. str_replace(['/',',','.',' ','_','(',')'],'-',$this->Name)
         );
         
         return $fields;
