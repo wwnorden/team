@@ -110,9 +110,14 @@ class TeamPlatoon extends DataObject
             _t(
                 'WWN\Team\Extensions\TeamSiteConfigExtension.Foldername',
                 'Foldername'
-            ).'/'. str_replace(['/',',','.',' ','_','(',')'],'-',$this->Name)
+            ).'/'.
+            _t(
+                'WWN\Team\TeamPlatoon.PLURALNAME',
+                'PLURALNAME'
+            ).'/'.
+            str_replace(['/', ',', '.', ' ', '_', '(', ')'], '-', $this->Name)
         );
-        
+
         return $fields;
     }
 
