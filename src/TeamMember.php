@@ -134,12 +134,12 @@ class TeamMember extends DataObject
 
     /**
      * Overwrite Getter for gridfield_relation search
-     * 
+     *
      * @return string
      */
     public function getTitle(): string
     {
-        return $this->FirstName. ' ' .$this->LastName;
+        return $this->FirstName.' '.$this->LastName;
     }
 
     /**
@@ -155,9 +155,14 @@ class TeamMember extends DataObject
             _t(
                 'WWN\Team\Extensions\TeamSiteConfigExtension.Foldername',
                 'Foldername'
-            ).'/'. str_replace(['/',',','.',' ','_','(',')'],'-',$this->FirstName . ' ' . $this->LastName)
+            ).'/'.
+            _t(
+                'WWN\Team\TeamMember.PLURALNAME',
+                'PLURALNAME'
+            ).'/'.
+            str_replace(['/', ',', '.', ' ', '_', '(', ')'], '-', $this->FirstName.' '.$this->LastName)
         );
-        
+
         return $fields;
     }
 
