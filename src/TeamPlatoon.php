@@ -4,6 +4,7 @@ namespace WWN\Team;
 
 use SilverStripe\Assets\Image;
 use SilverStripe\CMS\Forms\SiteTreeURLSegmentField;
+use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\RequiredFields;
@@ -33,6 +34,13 @@ class TeamPlatoon extends DataObject
         'URLSegment' => 'Varchar(255)',
         'Content' => 'HTMLText',
         'SortOrder' => 'Int',
+    ];
+
+    /**
+     * @var string[]
+     */
+    private static $belongs_many_many = [
+        'Pages' => SiteTree::class,
     ];
 
     /**
