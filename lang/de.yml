@@ -60,6 +60,12 @@ de:
     PLURALNAME: 'Mitglieder'
     SINGULARNAME: 'Mitglied'
 
+  WWN\Team\Extensions\TeamGroupPageExtension:
+    db_EnableTeamGroupExtension: 'Team Gruppen auf Seiten aktivieren'
+    many_many_TeamGroups: 'Gruppen'
+    PLURALNAME: 'Gruppen'
+    SINGULARNAME: 'Gruppe'
+
   WWN\Vehicles\Vehicle:
     has_one_TeamGroup: 'Gruppe'
     has_one_TeamPlatoon: 'Zug'

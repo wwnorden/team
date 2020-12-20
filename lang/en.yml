@@ -55,9 +55,15 @@ de:
 
   WWN\Team\Extensions\TeamMemberPageExtension:
     db_EnableTeamMemberExtension: 'Enable team members on pages'
-    many_many_TeamMembers: 'Team members'
-    PLURALNAME: 'Team members'
-    SINGULARNAME: 'Team member'
+    many_many_TeamMembers: 'Members'
+    PLURALNAME: 'Members'
+    SINGULARNAME: 'Member'
+
+  WWN\Team\Extensions\TeamGroupPageExtension:
+    db_EnableTeamGroupExtension: 'Enable teamgroups on pages'
+    many_many_TeamGroups: 'Groups'
+    PLURALNAME: 'Groups'
+    SINGULARNAME: 'Group'
 
   WWN\Vehicles\Vehicle:
     has_one_TeamGroup: 'Group'
