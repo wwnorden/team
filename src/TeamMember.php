@@ -4,6 +4,7 @@ namespace WWN\Team;
 
 use SilverStripe\Assets\Image;
 use SilverStripe\CMS\Forms\SiteTreeURLSegmentField;
+use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\DataObject;
@@ -33,6 +34,13 @@ class TeamMember extends DataObject
         'ShowMailOnSite' => 'Boolean',
         'ShowInContactForm' => 'Boolean',
         'SortOrder' => 'Int',
+    ];
+
+    /**
+     * @var string[]
+     */
+    private static $belongs_many_many = [
+        'Pages' => SiteTree::class,
     ];
 
     /**
