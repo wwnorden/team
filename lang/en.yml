@@ -60,10 +60,16 @@ de:
     SINGULARNAME: 'Member'
 
   WWN\Team\Extensions\TeamGroupPageExtension:
-    db_EnableTeamGroupExtension: 'Enable teamgroups on pages'
+    db_EnableTeamGroupExtension: 'Enable team groups on pages'
     many_many_TeamGroups: 'Groups'
     PLURALNAME: 'Groups'
     SINGULARNAME: 'Group'
+
+  WWN\Team\Extensions\TeamPlatoonPageExtension:
+    db_EnableTeamGroupExtension: 'Enable team platoons on pages'
+    many_many_TeamPlatoons: 'Platoons'
+    PLURALNAME: 'Platoons'
+    SINGULARNAME: 'Platoon'
 
   WWN\Vehicles\Vehicle:
     has_one_TeamGroup: 'Group'
