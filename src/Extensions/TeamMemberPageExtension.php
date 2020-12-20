@@ -59,7 +59,7 @@ class TeamMemberPageExtension extends DataExtension
         if ($this->owner->ID && $this->owner->EnableTeamMemberExtension) {
             $grid = GridField::create(
                 'TeamMembers',
-                false,
+                _t('WWN\Team\Extensions\TeamMemberPageExtension.many_many_TeamMembers', 'Members'),
                 $this->owner->TeamMembers(),
                 GridFieldConfig_RecordEditor::create()
                     ->addComponent(new GridFieldOrderableRows('Sort'))
