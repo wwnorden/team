@@ -65,6 +65,11 @@ class TeamMemberPageExtension extends DataExtension
                     ->addComponent(new GridFieldOrderableRows('Sort'))
             );
 
+            $fields->findOrMakeTab('Root.TeamMembers', _t(
+                    'WWN\Team\Extensions\TeamMemberPageExtension.many_many_TeamMembers',
+                    'Members'
+                )
+            );
             $fields->addFieldToTab(
                 'Root.TeamMembers',
                 $grid
