@@ -49,6 +49,28 @@ de:
     UploadFolders: 'Folder for team images'
     has_one_TeamImageUploadFolder: 'Images'
 
+  WWN\Team\Extensions\VehicleExtension:
+    has_one_TeamGroup: 'Group'
+    has_one_TeamPlatoon: 'Platoon'
+
+  WWN\Team\Extensions\TeamMemberPageExtension:
+    db_EnableTeamMemberExtension: 'Enable team members on pages'
+    many_many_TeamMembers: 'Members'
+    PLURALNAME: 'Members'
+    SINGULARNAME: 'Member'
+
+  WWN\Team\Extensions\TeamGroupPageExtension:
+    db_EnableTeamGroupExtension: 'Enable team groups on pages'
+    many_many_TeamGroups: 'Groups'
+    PLURALNAME: 'Groups'
+    SINGULARNAME: 'Group'
+
+  WWN\Team\Extensions\TeamPlatoonPageExtension:
+    db_EnableTeamPlatoonExtension: 'Enable team platoons on pages'
+    many_many_TeamPlatoons: 'Platoons'
+    PLURALNAME: 'Platoons'
+    SINGULARNAME: 'Platoon'
+
   WWN\Vehicles\Vehicle:
     has_one_TeamGroup: 'Group'
     has_one_TeamPlatoon: 'Platoon'

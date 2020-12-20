@@ -4,6 +4,7 @@ namespace WWN\Team;
 
 use SilverStripe\Assets\Image;
 use SilverStripe\CMS\Forms\SiteTreeURLSegmentField;
+use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\FieldList;
@@ -54,6 +55,7 @@ class TeamGroup extends DataObject
      * @var string[]
      */
     private static $belongs_many_many = [
+        'Pages' => SiteTree::class,
         'TeamMembers' => TeamMember::class,
     ];
 
