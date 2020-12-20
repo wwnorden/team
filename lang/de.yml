@@ -69,7 +69,7 @@ de:
     SINGULARNAME: 'Gruppe'
 
   WWN\Team\Extensions\TeamPlatoonPageExtension:
-    db_EnableTeamGroupExtension: 'Team Züge auf Seiten aktivieren'
+    db_EnableTeamPlatoonExtension: 'Team Züge auf Seiten aktivieren'
     many_many_TeamPlatoons: 'Züge'
     PLURALNAME: 'Züge'
     SINGULARNAME: 'Zug'
