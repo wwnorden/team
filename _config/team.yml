@@ -5,3 +5,7 @@ SilverStripe\SiteConfig\SiteConfig:
 WWN\Vehicles\Vehicle:
   extensions:
     - WWN\Team\Extensions\VehicleExtension
+
+SilverStripe\CMS\Model\SiteTree:
+  extensions:
+    - WWN\Team\Extensions\TeamMemberPageExtension
