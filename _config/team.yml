@@ -9,3 +9,4 @@ WWN\Vehicles\Vehicle:
 SilverStripe\CMS\Model\SiteTree:
   extensions:
     - WWN\Team\Extensions\TeamMemberPageExtension
+    - WWN\Team\Extensions\TeamGroupPageExtension
