@@ -30,6 +30,7 @@ de:
     has_one_Image: 'Bild'
     has_one_Platoon: 'Zug'
     has_many_Vehicles: 'Fahrzeuge'
+    PagesMemberMessage: '<p style="color: green">Nach dem Erstellen können weitere Einstellungen zu Fahrzeugen, Seiten und Mitgliedern vorgenommen werden.</p>'
     PLURALNAME: 'Gruppen'
     SINGULARNAME: 'Gruppe'
 

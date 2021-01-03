@@ -25,6 +25,7 @@ de:
     belongs_many_many_TeamMembers: 'Members'
     has_one_Image: 'Image'
     has_many_Vehicles: 'Vehicles'
+    PagesMemberMessage: '<p style="color: green">After creation further settings for vehicles, pages and group members can be done.</p>'
     PLURALNAME: 'Groups'
     SINGULARNAME: 'Group'
     Yes: 'Yes'
