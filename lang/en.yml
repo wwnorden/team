@@ -13,6 +13,7 @@ de:
     db_ShowInContactForm: 'Show in contact form'
     has_one_Image: 'Image'
     many_many_Groups: 'Groups'
+    PagesGroupsMessage: '<p style="color: green">After creation further settings for pages and group members can be done.</p>'
     PLURALNAME: 'Team'
     SINGULARNAME: 'Member'
 

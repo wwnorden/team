@@ -14,6 +14,7 @@ de:
     belongs_many_many_Pages: 'Seiten'
     has_one_Image: 'Bild'
     many_many_Groups: 'Gruppen'
+    PagesGroupsMessage: '<p style="color: green">Nach dem Erstellen können weitere Einstellungen zu Seiten und Gruppen vorgenommen werden.</p>'
     PLURALNAME: 'Mitglieder'
     SINGULARNAME: 'Mitglied'
     Yes: 'Ja'
