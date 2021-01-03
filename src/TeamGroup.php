@@ -21,6 +21,8 @@ use SilverStripe\Forms\GridField\GridFieldToolbarHeader;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\HasManyList;
+use SilverStripe\ORM\ManyManyList;
 use SilverStripe\View\Parsers\URLSegmentFilter;
 use SilverStripe\View\Requirements;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
@@ -31,6 +33,13 @@ use WWN\Vehicles\Vehicle;
  * TeamGroup
  *
  * @package wwn-team
+ * @property string  $Name
+ * @property string  $URLSegment
+ * @property string  $Content
+ * @property int     $SortOrder
+ * @method HasManyList Vehicles()
+ * @method ManyManyList Pages()
+ * @method ManyManyList TeamMembers()
  */
 class TeamGroup extends DataObject
 {
@@ -118,12 +127,12 @@ class TeamGroup extends DataObject
         Requirements::javascript('wwnorden/team:client/dist/js/urlsegmentfield.js');
 
         // Url segment
-        $mainFields = array(
+        $mainFields = [
             'URLSegment' => SiteTreeURLSegmentField::create(
                 'URLSegment',
                 _t('WWN\Team\TeamGroup.db_URLSegment', 'URL-segment')
             ),
-        );
+        ];
         $fields->addFieldsToTab('Root.Main', $mainFields);
         $fields->removeByName('SortOrder');
 
