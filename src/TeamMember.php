@@ -58,6 +58,15 @@ class TeamMember extends DataObject
     ];
 
     /**
+     * @var \string[][]
+     */
+    private static $many_many_extraFields = [
+        'Groups' => [
+            'Sort' => 'Int',
+        ],
+    ];
+
+    /**
      * @var string[]
      */
     private static $owns = [
