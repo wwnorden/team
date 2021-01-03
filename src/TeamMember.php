@@ -20,6 +20,7 @@ use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\FieldType\DBField;
+use SilverStripe\ORM\ManyManyList;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 use Symbiote\GridFieldExtensions\GridFieldTitleHeader;
 
@@ -27,6 +28,16 @@ use Symbiote\GridFieldExtensions\GridFieldTitleHeader;
  * TeamMember
  *
  * @package wwn-team
+ * @property string  $Grade
+ * @property string  $FirstName
+ * @property string  $LastName
+ * @property string  $Email
+ * @property string  $Position
+ * @property bool    $ShowMailOnSite
+ * @property bool    $ShowInContactForm
+ * @property int     $SortOrder
+ * @method ManyManyList Pages()
+ * @method ManyManyList Groups()
  */
 class TeamMember extends DataObject
 {
