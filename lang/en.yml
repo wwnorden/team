@@ -39,6 +39,7 @@ de:
     has_one_Image: 'Image'
     has_many_Vehicles: 'Vehicles'
     has_many_Groups: 'Groups'
+    PagesGroupsMessage: '<p style="color: green">After creation further settings for vehicles, pages and groups can be done.</p>'
     PLURALNAME: 'Platoons'
     SINGULARNAME: 'Platoon'
 
