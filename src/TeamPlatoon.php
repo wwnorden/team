@@ -21,6 +21,8 @@ use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\HasManyList;
+use SilverStripe\ORM\ManyManyList;
 use SilverStripe\View\Parsers\URLSegmentFilter;
 use SilverStripe\View\Requirements;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
@@ -31,6 +33,13 @@ use WWN\Vehicles\Vehicle;
  * TeamPlatoon
  *
  * @package wwn-team
+ * @property string $Name
+ * @property string $URLSegment
+ * @property string $Content
+ * @property int    $SortOrder
+ * @method HasManyList Vehicles()
+ * @method HasManyList Groups()
+ * @method ManyManyList Pages()
  */
 class TeamPlatoon extends DataObject
 {
@@ -144,7 +153,7 @@ class TeamPlatoon extends DataObject
             // sorting Vehicles
             $vehicles = GridField::create(
                 'Vehicles',
-                _t('WWN\Team\TeamPlatton.has_many_Vehicles', 'Vehicles'),
+                _t('WWN\Team\TeamPlatoon.has_many_Vehicles', 'Vehicles'),
                 $this->Vehicles(),
                 GridFieldConfig::create()->addComponents(
                     new GridFieldToolbarHeader(),
@@ -184,7 +193,7 @@ class TeamPlatoon extends DataObject
             // sorting Groups
             $groups = GridField::create(
                 'Groups',
-                _t('WWN\Team\TeamPlatton.has_many_Groups', 'Groups'),
+                _t('WWN\Team\TeamPlatoon.has_many_Groups', 'Groups'),
                 $this->Groups(),
                 GridFieldConfig::create()->addComponents(
                     new GridFieldToolbarHeader(),
@@ -201,7 +210,7 @@ class TeamPlatoon extends DataObject
             );
             $fields->addFieldsToTab('Root.Groups', [$groups]);
         } else {
-            $message = _t('WWN\Team\TeamPlatton.PagesGroupsMessage', 'PagesGroupsMessage');
+            $message = _t('WWN\Team\TeamPlatoon.PagesGroupsMessage', 'PagesGroupsMessage');
             $field = FieldGroup::create(LiteralField::create('PagesGroupsMessage', $message));
             $fields->insertBefore('Name', $field);
         }

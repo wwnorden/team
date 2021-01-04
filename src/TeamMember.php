@@ -28,14 +28,14 @@ use Symbiote\GridFieldExtensions\GridFieldTitleHeader;
  * TeamMember
  *
  * @package wwn-team
- * @property string  $Grade
- * @property string  $FirstName
- * @property string  $LastName
- * @property string  $Email
- * @property string  $Position
- * @property bool    $ShowMailOnSite
- * @property bool    $ShowInContactForm
- * @property int     $SortOrder
+ * @property string $Grade
+ * @property string $FirstName
+ * @property string $LastName
+ * @property string $Email
+ * @property string $Position
+ * @property bool   $ShowMailOnSite
+ * @property bool   $ShowInContactForm
+ * @property int    $SortOrder
  * @method ManyManyList Pages()
  * @method ManyManyList Groups()
  */
@@ -86,8 +86,8 @@ class TeamMember extends DataObject
      */
     private static $many_many_extraFields = [
         'Groups' => [
-            'Sort' => 'Int'
-        ]
+            'Sort' => 'Int',
+        ],
     ];
 
     /**
@@ -204,7 +204,7 @@ class TeamMember extends DataObject
             str_replace(['/', ',', '.', ' ', '_', '(', ')'], '-', $this->FirstName.' '.$this->LastName)
         );
 
-        // first, group must exist
+        // first, member must exist
         if ($this->exists()) {
             // sorting Pages
             $pages = GridField::create(

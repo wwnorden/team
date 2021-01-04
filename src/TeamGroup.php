@@ -33,10 +33,10 @@ use WWN\Vehicles\Vehicle;
  * TeamGroup
  *
  * @package wwn-team
- * @property string  $Name
- * @property string  $URLSegment
- * @property string  $Content
- * @property int     $SortOrder
+ * @property string $Name
+ * @property string $URLSegment
+ * @property string $Content
+ * @property int    $SortOrder
  * @method HasManyList Vehicles()
  * @method ManyManyList Pages()
  * @method ManyManyList TeamMembers()
