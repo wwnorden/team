@@ -20,6 +20,7 @@ use SilverStripe\Forms\GridField\GridFieldEditButton;
 use SilverStripe\Forms\GridField\GridFieldToolbarHeader;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\RequiredFields;
+use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\HasManyList;
 use SilverStripe\ORM\ManyManyList;
@@ -33,10 +34,10 @@ use WWN\Vehicles\Vehicle;
  * TeamGroup
  *
  * @package wwn-team
- * @property string $Name
- * @property string $URLSegment
- * @property string $Content
- * @property int    $SortOrder
+ * @property string  $Name
+ * @property string  $URLSegment
+ * @property string  $Content
+ * @property int     $SortOrder
  * @method HasManyList Vehicles()
  * @method ManyManyList Pages()
  * @method ManyManyList TeamMembers()
@@ -278,5 +279,13 @@ class TeamGroup extends DataObject
 
         return ($group->ID == TeamPageController::curr()->groupId) ? 'current'
             : 'link';
+    }
+
+    /**
+     * @return DataList|ManyManyList
+     */
+    public function getSortedTeamMembers()
+    {
+        return $this->TeamMembers()->sort('Sort');
     }
 }
