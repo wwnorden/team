@@ -18,6 +18,7 @@ use SilverStripe\Forms\GridField\GridFieldEditButton;
 use SilverStripe\Forms\GridField\GridFieldToolbarHeader;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\RequiredFields;
+use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\ORM\ManyManyList;
@@ -274,5 +275,13 @@ class TeamMember extends DataObject
             $this->owner->Image()->publishSingle();
         }
         parent::onAfterWrite();
+    }
+
+    /**
+     * @return DataList|ManyManyList
+     */
+    public function getSortedTeamGroups()
+    {
+        return $this->Groups()->sort('Sort');
     }
 }
