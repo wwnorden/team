@@ -166,7 +166,7 @@ class TeamGroup extends DataObject
                     new GridFieldDeleteAction(),
                     new GridFieldOrderableRows(),
                     new GridFieldTitleHeader(),
-                    new GridFieldAddExistingAutocompleter('before', ['Title'])
+                    new GridFieldAddExistingAutocompleter('before', ['Name', 'PagingName'])
                 )
             );
             $fields->addFieldsToTab('Root.Vehicles', [$vehicles]);
@@ -206,7 +206,7 @@ class TeamGroup extends DataObject
                     new GridFieldDeleteAction(),
                     new GridFieldOrderableRows(),
                     new GridFieldTitleHeader(),
-                    new GridFieldAddExistingAutocompleter('before', ['Title'])
+                    new GridFieldAddExistingAutocompleter('before', ['FirstName', 'LastName', 'Email', 'Position'])
                 )
             );
             $fields->addFieldsToTab('Root.TeamMembers', [$members]);

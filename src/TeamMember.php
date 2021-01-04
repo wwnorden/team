@@ -204,7 +204,7 @@ class TeamMember extends DataObject
             str_replace(['/', ',', '.', ' ', '_', '(', ')'], '-', $this->FirstName.' '.$this->LastName)
         );
 
-        // first, member must exist
+        // first, group must exist
         if ($this->exists()) {
             // sorting Pages
             $pages = GridField::create(
@@ -241,7 +241,7 @@ class TeamMember extends DataObject
                     new GridFieldDeleteAction(),
                     new GridFieldOrderableRows(),
                     new GridFieldTitleHeader(),
-                    new GridFieldAddExistingAutocompleter('before', ['Title'])
+                    new GridFieldAddExistingAutocompleter('before', ['Name'])
                 )
             );
             $fields->addFieldsToTab('Root.Groups', [$groups]);
