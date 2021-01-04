@@ -21,7 +21,7 @@ use WWN\Team\TeamGroup;
  *
  * @package wwn-page
  * @property bool $EnableTeamGroupExtension
- * @method ManyManyList Pages()
+ * @method ManyManyList TeamGroups()
  */
 class TeamGroupPageExtension extends DataExtension
 {
