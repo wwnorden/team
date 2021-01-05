@@ -5,15 +5,40 @@ namespace WWN\Team;
 use SilverStripe\Assets\Image;
 use SilverStripe\CMS\Forms\SiteTreeURLSegmentField;
 use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
+use SilverStripe\Forms\GridField\GridFieldAddNewButton;
+use SilverStripe\Forms\GridField\GridFieldConfig;
+use SilverStripe\Forms\GridField\GridFieldDataColumns;
+use SilverStripe\Forms\GridField\GridFieldDeleteAction;
+use SilverStripe\Forms\GridField\GridFieldDetailForm;
+use SilverStripe\Forms\GridField\GridFieldEditButton;
+use SilverStripe\Forms\GridField\GridFieldToolbarHeader;
+use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\RequiredFields;
+use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\FieldType\DBField;
+use SilverStripe\ORM\ManyManyList;
+use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
+use Symbiote\GridFieldExtensions\GridFieldTitleHeader;
 
 /**
  * TeamMember
  *
  * @package wwn-team
+ * @property string $Grade
+ * @property string $FirstName
+ * @property string $LastName
+ * @property string $Email
+ * @property string $Position
+ * @property bool   $ShowMailOnSite
+ * @property bool   $ShowInContactForm
+ * @property int    $SortOrder
+ * @method ManyManyList Pages()
+ * @method ManyManyList Groups()
  */
 class TeamMember extends DataObject
 {
@@ -55,6 +80,15 @@ class TeamMember extends DataObject
      */
     private static $many_many = [
         'Groups' => TeamGroup::class,
+    ];
+
+    /**
+     * @var \string[][]
+     */
+    private static $many_many_extraFields = [
+        'Groups' => [
+            'Sort' => 'Int',
+        ],
     ];
 
     /**
@@ -171,6 +205,53 @@ class TeamMember extends DataObject
             str_replace(['/', ',', '.', ' ', '_', '(', ')'], '-', $this->FirstName.' '.$this->LastName)
         );
 
+        // first, member must exist
+        if ($this->exists()) {
+            // sorting Pages
+            $pages = GridField::create(
+                'Pages',
+                _t('WWN\Team\TeamMember.belongs_many_many_Pages', 'Pages'),
+                $this->Pages(),
+                GridFieldConfig::create()->addComponents(
+                    new GridFieldToolbarHeader(),
+                    new GridFieldAddNewButton('toolbar-header-right'),
+                    new GridFieldDetailForm(),
+                    new GridFieldDataColumns(),
+                    new GridFieldEditButton(),
+                    new GridFieldDeleteAction('unlinkrelation'),
+                    new GridFieldDeleteAction(),
+                    new GridFieldOrderableRows(),
+                    new GridFieldTitleHeader(),
+                    new GridFieldAddExistingAutocompleter('before', ['Title'])
+                )
+            );
+            $fields->addFieldsToTab('Root.Pages', [$pages]);
+
+            // sorting Groups
+            $groups = GridField::create(
+                'Groups',
+                _t('WWN\Team\TeamMember.many_many_Groups', 'Groups'),
+                $this->Groups(),
+                GridFieldConfig::create()->addComponents(
+                    new GridFieldToolbarHeader(),
+                    new GridFieldAddNewButton('toolbar-header-right'),
+                    new GridFieldDetailForm(),
+                    new GridFieldDataColumns(),
+                    new GridFieldEditButton(),
+                    new GridFieldDeleteAction('unlinkrelation'),
+                    new GridFieldDeleteAction(),
+                    new GridFieldOrderableRows(),
+                    new GridFieldTitleHeader(),
+                    new GridFieldAddExistingAutocompleter('before', ['Name'])
+                )
+            );
+            $fields->addFieldsToTab('Root.Groups', [$groups]);
+        } else {
+            $message = _t('WWN\Team\TeamMember.PagesGroupsMessage', 'PagesGroupsMessage');
+            $field = FieldGroup::create(LiteralField::create('PagesGroupsMessage', $message));
+            $fields->insertBefore('Grade', $field);
+        }
+
         return $fields;
     }
 
@@ -194,5 +275,13 @@ class TeamMember extends DataObject
             $this->owner->Image()->publishSingle();
         }
         parent::onAfterWrite();
+    }
+
+    /**
+     * @return DataList|ManyManyList
+     */
+    public function getSortedTeamGroups()
+    {
+        return $this->Groups()->sort('Sort');
     }
 }

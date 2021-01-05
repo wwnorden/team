@@ -11,6 +11,8 @@ use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\ORM\DataList;
+use SilverStripe\ORM\ManyManyList;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 use WWN\Team\TeamGroup;
 
@@ -18,6 +20,8 @@ use WWN\Team\TeamGroup;
  * TeamGroupPageExtension
  *
  * @package wwn-page
+ * @property bool $EnableTeamGroupExtension
+ * @method ManyManyList TeamGroups()
  */
 class TeamGroupPageExtension extends DataExtension
 {
@@ -103,5 +107,13 @@ class TeamGroupPageExtension extends DataExtension
                 )),
             ]
         );
+    }
+
+    /**
+     * @return DataList|ManyManyList
+     */
+    public function getSortedTeamGroups()
+    {
+        return $this->owner->TeamGroups()->sort('Sort');
     }
 }
