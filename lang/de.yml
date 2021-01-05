@@ -14,6 +14,7 @@ de:
     belongs_many_many_Pages: 'Seiten'
     has_one_Image: 'Bild'
     many_many_Groups: 'Gruppen'
+    PagesGroupsMessage: '<p style="color: green">Nach dem Erstellen können weitere Einstellungen zu Seiten und Gruppen vorgenommen werden.</p>'
     PLURALNAME: 'Mitglieder'
     SINGULARNAME: 'Mitglied'
     Yes: 'Ja'
@@ -30,6 +31,7 @@ de:
     has_one_Image: 'Bild'
     has_one_Platoon: 'Zug'
     has_many_Vehicles: 'Fahrzeuge'
+    PagesMemberMessage: '<p style="color: green">Nach dem Erstellen können weitere Einstellungen zu Fahrzeugen, Seiten und Mitgliedern vorgenommen werden.</p>'
     PLURALNAME: 'Gruppen'
     SINGULARNAME: 'Gruppe'
 
@@ -41,6 +43,7 @@ de:
     has_one_Image: 'Bild'
     has_many_Vehicles: 'Fahrzeuge'
     has_many_Groups: 'Gruppen'
+    PagesGroupsMessage: '<p style="color: green">Nach dem Erstellen können weitere Einstellungen zu Fahrzeugen, Seiten und Gruppen vorgenommen werden.</p>'
     PLURALNAME: 'Züge'
     SINGULARNAME: 'Zug'
 

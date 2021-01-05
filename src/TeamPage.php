@@ -8,6 +8,7 @@ use SilverStripe\Control\Controller;
 use SilverStripe\Control\Director;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataList;
+use SilverStripe\ORM\SS_List;
 use SilverStripe\View\ArrayData;
 
 /**
@@ -17,6 +18,9 @@ use SilverStripe\View\ArrayData;
  */
 class TeamPage extends Page
 {
+    /**
+     * @return ArrayList|SS_List
+     */
     public function Children()
     {
         $groups = TeamGroup::get()->sort('SortOrder ASC');

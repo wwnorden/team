@@ -7,17 +7,40 @@ use SilverStripe\CMS\Forms\SiteTreeURLSegmentField;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
+use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
+use SilverStripe\Forms\GridField\GridFieldAddNewButton;
+use SilverStripe\Forms\GridField\GridFieldConfig;
+use SilverStripe\Forms\GridField\GridFieldDataColumns;
+use SilverStripe\Forms\GridField\GridFieldDeleteAction;
+use SilverStripe\Forms\GridField\GridFieldDetailForm;
+use SilverStripe\Forms\GridField\GridFieldEditButton;
+use SilverStripe\Forms\GridField\GridFieldToolbarHeader;
+use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\RequiredFields;
+use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\HasManyList;
+use SilverStripe\ORM\ManyManyList;
 use SilverStripe\View\Parsers\URLSegmentFilter;
 use SilverStripe\View\Requirements;
+use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
+use Symbiote\GridFieldExtensions\GridFieldTitleHeader;
 use WWN\Vehicles\Vehicle;
 
 /**
  * TeamGroup
  *
  * @package wwn-team
+ * @property string  $Name
+ * @property string  $URLSegment
+ * @property string  $Content
+ * @property int     $SortOrder
+ * @method HasManyList Vehicles()
+ * @method ManyManyList Pages()
+ * @method ManyManyList TeamMembers()
  */
 class TeamGroup extends DataObject
 {
@@ -105,12 +128,12 @@ class TeamGroup extends DataObject
         Requirements::javascript('wwnorden/team:client/dist/js/urlsegmentfield.js');
 
         // Url segment
-        $mainFields = array(
+        $mainFields = [
             'URLSegment' => SiteTreeURLSegmentField::create(
                 'URLSegment',
                 _t('WWN\Team\TeamGroup.db_URLSegment', 'URL-segment')
             ),
-        );
+        ];
         $fields->addFieldsToTab('Root.Main', $mainFields);
         $fields->removeByName('SortOrder');
 
@@ -124,9 +147,76 @@ class TeamGroup extends DataObject
                 'WWN\Team\TeamGroup.PLURALNAME',
                 'PLURALNAME'
             ).'/'.
-            str_replace(['/',',','.',' ','_','(',')'],'-',$this->Name)
+            str_replace(['/', ',', '.', ' ', '_', '(', ')'], '-', $this->Name)
         );
-        
+
+        // first, group must exist
+        if ($this->exists()) {
+            // sorting Vehicles
+            $vehicles = GridField::create(
+                'Vehicles',
+                _t('WWN\Team\TeamGroup.has_many_Vehicles', 'Vehicles'),
+                $this->Vehicles(),
+                GridFieldConfig::create()->addComponents(
+                    new GridFieldToolbarHeader(),
+                    new GridFieldAddNewButton('toolbar-header-right'),
+                    new GridFieldDetailForm(),
+                    new GridFieldDataColumns(),
+                    new GridFieldEditButton(),
+                    new GridFieldDeleteAction('unlinkrelation'),
+                    new GridFieldDeleteAction(),
+                    new GridFieldOrderableRows(),
+                    new GridFieldTitleHeader(),
+                    new GridFieldAddExistingAutocompleter('before', ['Name', 'PagingName'])
+                )
+            );
+            $fields->addFieldsToTab('Root.Vehicles', [$vehicles]);
+
+            // sorting Pages
+            $pages = GridField::create(
+                'Pages',
+                _t('WWN\Team\TeamGroup.belongs_many_many_Pages', 'Pages'),
+                $this->Pages(),
+                GridFieldConfig::create()->addComponents(
+                    new GridFieldToolbarHeader(),
+                    new GridFieldAddNewButton('toolbar-header-right'),
+                    new GridFieldDetailForm(),
+                    new GridFieldDataColumns(),
+                    new GridFieldEditButton(),
+                    new GridFieldDeleteAction('unlinkrelation'),
+                    new GridFieldDeleteAction(),
+                    new GridFieldOrderableRows(),
+                    new GridFieldTitleHeader(),
+                    new GridFieldAddExistingAutocompleter('before', ['Title'])
+                )
+            );
+            $fields->addFieldsToTab('Root.Pages', [$pages]);
+
+            // sorting TeamMembers
+            $members = GridField::create(
+                'TeamMembers',
+                _t('WWN\Team\TeamGroup.belongs_many_many_TeamMembers', 'TeamMembers'),
+                $this->TeamMembers(),
+                GridFieldConfig::create()->addComponents(
+                    new GridFieldToolbarHeader(),
+                    new GridFieldAddNewButton('toolbar-header-right'),
+                    new GridFieldDetailForm(),
+                    new GridFieldDataColumns(),
+                    new GridFieldEditButton(),
+                    new GridFieldDeleteAction('unlinkrelation'),
+                    new GridFieldDeleteAction(),
+                    new GridFieldOrderableRows(),
+                    new GridFieldTitleHeader(),
+                    new GridFieldAddExistingAutocompleter('before', ['FirstName', 'LastName', 'Email', 'Position'])
+                )
+            );
+            $fields->addFieldsToTab('Root.TeamMembers', [$members]);
+        } else {
+            $message = _t('WWN\Team\TeamGroup.PagesMemberMessage', 'PagesMemberMessage');
+            $field = FieldGroup::create(LiteralField::create('PagesMemberMessage', $message));
+            $fields->insertBefore('Name', $field);
+        }
+
         return $fields;
     }
 
@@ -189,5 +279,13 @@ class TeamGroup extends DataObject
 
         return ($group->ID == TeamPageController::curr()->groupId) ? 'current'
             : 'link';
+    }
+
+    /**
+     * @return DataList|ManyManyList
+     */
+    public function getSortedTeamMembers()
+    {
+        return $this->TeamMembers()->sort('Sort');
     }
 }

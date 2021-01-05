@@ -13,6 +13,7 @@ de:
     db_ShowInContactForm: 'Show in contact form'
     has_one_Image: 'Image'
     many_many_Groups: 'Groups'
+    PagesGroupsMessage: '<p style="color: green">After creation further settings for pages and group members can be done.</p>'
     PLURALNAME: 'Team'
     SINGULARNAME: 'Member'
 
@@ -25,6 +26,7 @@ de:
     belongs_many_many_TeamMembers: 'Members'
     has_one_Image: 'Image'
     has_many_Vehicles: 'Vehicles'
+    PagesMemberMessage: '<p style="color: green">After creation further settings for vehicles, pages and group members can be done.</p>'
     PLURALNAME: 'Groups'
     SINGULARNAME: 'Group'
     Yes: 'Yes'
@@ -37,6 +39,7 @@ de:
     has_one_Image: 'Image'
     has_many_Vehicles: 'Vehicles'
     has_many_Groups: 'Groups'
+    PagesGroupsMessage: '<p style="color: green">After creation further settings for vehicles, pages and groups can be done.</p>'
     PLURALNAME: 'Platoons'
     SINGULARNAME: 'Platoon'
 
