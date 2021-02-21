@@ -14,6 +14,7 @@ de:
     belongs_many_many_Pages: 'Seiten'
     has_one_Image: 'Bild'
     many_many_Groups: 'Gruppen'
+    Leader: 'Führung'
     PagesGroupsMessage: '<p style="color: green">Nach dem Erstellen können weitere Einstellungen zu Seiten und Gruppen vorgenommen werden.</p>'
     PLURALNAME: 'Mitglieder'
     SINGULARNAME: 'Mitglied'
@@ -32,7 +33,7 @@ de:
     has_one_Platoon: 'Zug'
     has_many_Vehicles: 'Fahrzeuge'
     PagesMemberMessage: '<p style="color: green">Nach dem Erstellen können weitere Einstellungen zu Fahrzeugen, Seiten und Mitgliedern vorgenommen werden.</p>'
-    PLURALNAME: 'Gruppen'
+    PLURALNAME: 'Gruppen/Abteilungen'
     SINGULARNAME: 'Gruppe'
 
   WWN\Team\TeamPlatoon:
